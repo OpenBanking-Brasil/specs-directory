@@ -53,8 +53,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -85,8 +86,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
   '/references/authorities':
@@ -114,8 +116,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -145,8 +148,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -174,8 +178,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -205,8 +210,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -234,8 +240,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -265,8 +272,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -294,8 +302,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -325,8 +334,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -357,8 +367,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -389,8 +400,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -421,8 +433,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -454,8 +467,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -487,8 +501,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -517,8 +532,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -548,8 +564,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -580,8 +597,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -613,8 +631,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -639,8 +658,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -668,8 +688,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -695,8 +716,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -726,8 +748,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -755,8 +778,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -787,8 +811,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -820,8 +845,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -853,7 +879,9 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        - oAuth:
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -882,8 +910,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -916,8 +945,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -950,8 +980,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -988,8 +1019,9 @@ paths:
 
       security:
         
-        - oAuth:
-            
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
             - directory:software
 
 
@@ -1017,28 +1049,30 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
-        - oAuth:
+        - oAuth-sandbox:
             - directory:software
-
+        - oAuth-production:
+            - directory:software
+        - oAuth-production:
+            - directory:software
 components:
   securitySchemes:
     oAuth-sandbox:
       type: oauth2
       description: This API uses oAuth 2.0 client credentials grant 
       flows:
-        - clientCredentials:
-          tokenUrl: https:/matls-auth.sandbox.directory.openbankingbrasil.org.br/token
-          scopes:
-            directory:software: Software statement client operations
+          clientCredentials:
+            tokenUrl: https:/matls-auth.sandbox.directory.openbankingbrasil.org.br/token
+            scopes:
+              directory:software: Software statement client operations
     oAuth-production:
       type: oauth2
       description: This API uses oAuth 2.0 client credentials grant 
       flows:
-        - clientCredentials:
-          tokenUrl: https://auth.directory.openbankingbrasil.org.br/token
-          scopes:
-            directory:software: Software statement client operations
+          clientCredentials:
+            tokenUrl: https://auth.directory.openbankingbrasil.org.br/token
+            scopes:
+              directory:software: Software statement client operations
 
 
 
