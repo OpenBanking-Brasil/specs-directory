@@ -569,7 +569,75 @@ paths:
         - oAuth-production:
             - directory:software
 
+  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationDomainName'
+    get:
+      summary: All users for the given authorisation domain
+      tags:
+        - Organisation Domain Users
+        
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainUsers'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+          
+      security:
+        
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
+            - directory:software
 
+  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users/{UserEmailId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationDomainName'
+      - $ref: '#/components/parameters/UserEmailId'
+    get:
+      summary: Authorisation Domain user details
+      tags:
+        - Organisation Domain Users
+        
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainUsers'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+          
+      security:
+        
+        - oAuth-sandbox:
+            - directory:software
+        - oAuth-production:
+            - directory:software
+        
   '/organisations/{OrganisationId}/contacts':
     parameters:
       - $ref: '#/components/parameters/OrganisationId'
@@ -1053,8 +1121,7 @@ paths:
             - directory:software
         - oAuth-production:
             - directory:software
-        - oAuth-production:
-            - directory:software
+
 components:
   securitySchemes:
     oAuth-sandbox:
@@ -2681,13 +2748,7 @@ components:
             - Inactive
           default: Active
         ContactRole:
-          type: string
-          description: Type of role for this user
-          enum:
-            - PTC
-            - STC
-            - PBC
-            - SBC
+          $ref: '#/components/schemas/ContactRoleEnum'
 
     AuthorisationDomains:
       type: array
@@ -3351,3 +3412,7 @@ components:
         - STC
         - PBC
         - SBC
+        - PSDC
+        - PDRC
+        - SSDC
+        - SDRC
