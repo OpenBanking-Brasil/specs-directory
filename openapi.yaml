@@ -34,10 +34,24 @@ paths:
           schema:
             type: string
           description: The field name to sort
+        - in: query
+          name: displayMine
+          schema:
+            type: string
+            default: ""
+          required: false
+          description: Set to an email value to instruct the backend to only return organisations related to the user
+        - in: query
+          name: filterBy
+          schema:
+            type: string
+            default: ""
+          required: false
+          description: Will return organisations with data like the provided value
 
       responses:
         '200':
-          $ref: '#/components/responses/Organisations'
+          $ref: '#/components/responses/OrganisationsPage'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -52,7 +66,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -85,7 +99,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -115,7 +129,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -147,7 +161,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -177,7 +191,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -209,7 +223,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -239,7 +253,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -271,7 +285,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -301,7 +315,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -333,7 +347,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -366,7 +380,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -399,7 +413,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -432,7 +446,7 @@ paths:
         '502':
           $ref: '#/components/responses/BadGateway'
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -466,7 +480,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -500,7 +514,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -531,7 +545,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -563,7 +577,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -577,7 +591,7 @@ paths:
       summary: All users for the given authorisation domain
       tags:
         - Organisation Domain Users
-        
+
       responses:
         '200':
           $ref: '#/components/responses/AuthorisationDomainUsers'
@@ -595,9 +609,9 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '502':
           $ref: '#/components/responses/BadGateway'
-          
+
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -612,7 +626,7 @@ paths:
       summary: Authorisation Domain user details
       tags:
         - Organisation Domain Users
-        
+
       responses:
         '200':
           $ref: '#/components/responses/AuthorisationDomainUsers'
@@ -630,14 +644,14 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '502':
           $ref: '#/components/responses/BadGateway'
-          
+
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
             - directory:software
-        
+
   '/organisations/{OrganisationId}/contacts':
     parameters:
       - $ref: '#/components/parameters/OrganisationId'
@@ -664,7 +678,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -698,7 +712,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -725,7 +739,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -755,7 +769,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -783,7 +797,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -815,7 +829,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -845,7 +859,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -878,7 +892,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -912,7 +926,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -977,7 +991,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -1012,7 +1026,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -1047,7 +1061,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -1086,7 +1100,7 @@ paths:
           $ref: '#/components/responses/BadGateway'
 
       security:
-        
+
         - oAuth-sandbox:
             - directory:software
         - oAuth-production:
@@ -1126,20 +1140,20 @@ components:
   securitySchemes:
     oAuth-sandbox:
       type: oauth2
-      description: This API uses oAuth 2.0 client credentials grant 
+      description: This API uses oAuth 2.0 client credentials grant
       flows:
-          clientCredentials:
-            tokenUrl: https:/matls-auth.sandbox.directory.openbankingbrasil.org.br/token
-            scopes:
-              directory:software: Software statement client operations
+        clientCredentials:
+          tokenUrl: https:/matls-auth.sandbox.directory.openbankingbrasil.org.br/token
+          scopes:
+            directory:software: Software statement client operations
     oAuth-production:
       type: oauth2
-      description: This API uses oAuth 2.0 client credentials grant 
+      description: This API uses oAuth 2.0 client credentials grant
       flows:
-          clientCredentials:
-            tokenUrl: https://auth.directory.openbankingbrasil.org.br/token
-            scopes:
-              directory:software: Software statement client operations
+        clientCredentials:
+          tokenUrl: https://auth.directory.openbankingbrasil.org.br/token
+          scopes:
+            directory:software: Software statement client operations
 
 
 
@@ -1301,6 +1315,21 @@ components:
         $ref: '#/components/schemas/ExternalSigningServiceEnvelopeId'
 
   responses:
+    OrganisationsPage:
+      description: All organisations
+      headers:
+        x-fapi-interaction-id:
+          description: "An RFC4122 UID used as a correlation id."
+          schema:
+            type: string
+            pattern: '^[a-zA-Z0-9][a-zA-Z0-9\-]{0,99}$'
+            minLength: 1
+            maxLength: 100
+            example: 73cac523-d3ae-2289-b106-330a6218710d
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OrganisationsPage'
     NoContent:
       description: No Content
     BadRequest:
@@ -1705,6 +1734,30 @@ components:
 
 
   schemas:
+    OrganisationsPage:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+        totalSize:
+          type: integer
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        numberOfElements:
+          type: integer
+        size:
+          type: integer
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organisation'
+        offset:
+          type: integer
+        empty:
+          type: boolean
+        pageNumber:
+          type: integer
+
     BadRequest:
       type: object
       properties:
