@@ -158,7 +158,7 @@ Ver alguma regra lógica utilizada na criação do payload que tem relação com
   ]
 }
 
-
+```
 #### Payload Alteração Authorization Server
 ```
 {
@@ -478,7 +478,7 @@ Ver alguma regra lógica utilizada na criação do payload que tem relação com
   }
 }
 
-
+```
 #### Payload da inativação de um certificado BRSEAL
 
 ```
@@ -545,7 +545,7 @@ Ver alguma regra lógica utilizada na criação do payload que tem relação com
     }
   ]
 }
-
+```
 
 
 ### Exemplo Payload Alteração Contatos
