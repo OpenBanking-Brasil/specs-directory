@@ -1,15 +1,8 @@
-# Specs-Directory
+# Webhooks do diretório de participantes
 
-## Cadastro Instituições Diretório 
-Para requisitar o cadastro de uma nova instiuição no diretório de participantes, preencher a planilha "Formulário Cadatro Instituições Diretório.xlsx" com os dados da instiuição e enviar para o e-mail cadastro@openbankingbr.org
+Para o cadastro e objetivos do webhooks no diretório de participantes pedimos que consultem o [Guia de Operação do Diretório do Open Banking](https://openbanking-brasil.github.io/areadesenvolvedor/#guia-operacional-do-diretorio-central)
 
-## APIs do Diretório
-O Arquivo "openapi.yaml" contem as especificações referentes as APIs de consulta de informações do diretório de participantes. Para acessar o diretório é necessário a emissão de certificados válidos, conforme especificado no manual do diretório de participantes, presente no portal do desenvolvedor
-
-
-## Webhooks
-
-Relação de eventos que acionam um webhook atualmente no diretório:
+## Relação de eventos que acionam um webhook no diretório:
 
 **Criação, update ou delete:**
 - Organisations (organizações)
@@ -36,7 +29,15 @@ Relação de eventos que acionam um webhook atualmente no diretório:
 **Outros:**
 - Termos e condições de uma organização: Iniciação do processo de assinatura. Durante o processo, caso haja uma mudança no status
 
-### Exemplos de payloads
+## Payloads das notificações
+
+## Estrutura Básica do Payload
+
+Ver alguma regra lógica utilizada na criação do payload que tem relação com o as [APIs do Diretório](https://github.com/OpenBanking-Brasil/specs-directory/blob/main/openapi.yaml)
+
+## Exemplos de payloads
+
+### Exemplos de payloads - Inscrição
 
 #### Payload de inscrição no webhook de um servidor de autorização (subscription)
 
@@ -54,6 +55,7 @@ Relação de eventos que acionam um webhook atualmente no diretório:
   "SigningCertURL": "https://sns.us-west-2.amazonaws.com/SimpleNotificationService-7ff5318490ec183fbaddaa2a969abfda.pem"
   }
 ```
+### Exemplo Payload Alteração Authorisation Server
 
 #### Payload de um novo Recurso de API (Api Resource)
 ```
@@ -112,6 +114,13 @@ Relação de eventos que acionam um webhook atualmente no diretório:
 ]
 }
 ```
+#### Payload Criação Authorization Server
+
+#### Payload Remoção Authorization Server
+
+#### Payload Alteração Software Statement
+
+### Exemplo Payload Alteração Software Statement
 
 #### Payload da adição de um novo Software Statement
 
@@ -239,6 +248,7 @@ Relação de eventos que acionam um webhook atualmente no diretório:
 }
 
 ```
+### Exemplo Payload Alteração Certificados
 
 #### Payload da criação de um novo certificado BRSEAL
 
@@ -310,6 +320,13 @@ Relação de eventos que acionam um webhook atualmente no diretório:
 
 ```
 
+
+#### Payload da inativação de um certificado BRCAC 
+
+
+#### Payload da inativação de um certificado BRSEAL
+
+### Exemplo Payload Alteração Contatos
 
 #### Payload da adição de um contato
 
