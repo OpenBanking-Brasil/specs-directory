@@ -33,7 +33,22 @@ Para o cadastro e objetivos do webhooks no diretório de participantes pedimos q
 
 ## Estrutura Básica do Payload
 
-Ver alguma regra lógica utilizada na criação do payload que tem relação com o as [APIs do Diretório](https://github.com/OpenBanking-Brasil/specs-directory/blob/main/openapi.yaml)
+Os payloads dos webhooks são construídos seguindo uma estrutura de _geral até o evento_. Ou seja, para cada evento acionado, será detalhado dentro do payload response a estrutura inteira que o compõe.
+
+Assim, em cada payload você consegue ver e ler toda a cadeia da qual aquele evento pertence, facilitando a consulta.
+
+Como exemplo, temos um webhook notificando abaixo a criação de um servidor de autorização:
+
+![image](https://user-images.githubusercontent.com/94750959/154345856-f0de0db0-a225-4900-895d-4ddfd52d6f23.png)
+
+Note que a linha de Revision fica no mesmo nível do evento.
+
+Um outro exemplo de criação de um novo software authority claim, vemos que o payload mostra a organização, o software statement e depois o objeto que foi atualizado.
+
+![image (1)](https://user-images.githubusercontent.com/94750959/154346538-ffc4389c-a63a-4d38-993c-c72c4f4ba850.png)
+
+
+Em relação aos campos, o payload segue a mesma estrutura das [APIs do Diretório](https://github.com/OpenBanking-Brasil/specs-directory/blob/main/openapi.yaml)
 
 ## Exemplos de payloads
 
