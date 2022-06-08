@@ -13,52 +13,7 @@ servers:
     description: Directory Sandbox
 
 paths:
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certificates/{SoftwareStatementCertificateOrKeyType}/{CertificateOrKeyId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/SoftwareStatementId'
-      - $ref: '#/components/parameters/SoftwareStatementCertificateOrKeyType'
-      - $ref: '#/components/parameters/CertificateOrKeyId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get the certificate of the given type and ID for the given software statement
-      tags:
-        - Software Statement Certificates
-      responses:
-        '200':
-          $ref: '#/components/responses/CertificatesOrKey'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/contacts':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
+  '/organisations':
     get:
       parameters:
         - in: query
@@ -76,379 +31,26 @@ paths:
           schema:
             type: string
           description: The field name to sort
-      summary: Get the contacts for the given organisation
-      tags:
-        - Contacts
-      responses:
-        '200':
-          $ref: '#/components/responses/ContactsPage'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/ApiResourceId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation server API resource by Id
-      tags:
-        - Authorisation Servers - API Resources
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResource'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/certifications/{AuthorisationServerCertificationId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/AuthorisationServerCertificationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get a certification by Id
-      tags:
-        - Authorisation Server Certifications
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationServerCertification'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}/authorisations':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authority claims' authorisations
-      tags:
-        - Organisation Authority Claims Authorisations
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityClaimAuthorisations'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
         - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
+          name: displayMine
           schema:
             type: string
-          description: The field name to sort
-      summary: Get all Api Resources for the given Authorisation Server
-      tags:
-        - Authorisation Servers - API Resources
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResources'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationDomainName'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
+          description: Set to an email value to instruct the backend to only return organisations related to the user
         - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
+          name: filterBy
           schema:
             type: string
-          description: The field name to sort
-      summary: All users for the given authorisation domain
-      tags:
-        - Organisation Domain Users
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomainUsersPage'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomains/{AuthorisationDomainName}':
-    parameters:
-      - $ref: '#/components/parameters/AuthorisationDomainName'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation domain by Name
-      tags:
-        - References - Authorisation Domain
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomain'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/ess/poll/{ExternalSigningServiceEnvelopeId}':
-    get:
-      parameters:
-        - $ref: '#/components/parameters/OrganisationId'
-        - $ref: '#/components/parameters/ExternalSigningServiceEnvelopeId'
+          description: Will return organisations with data like the provided value
         - $ref: '#/components/parameters/x-fapi-auth-date'
         - $ref: '#/components/parameters/x-fapi-customer-ip-address'
         - $ref: '#/components/parameters/x-fapi-interaction-id'
         - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Polls the ESS to get the latest status of the signing request
+      summary: Get all organisations that the logged in user is authorised to retrieve from trusted  services.
       tags:
         - Organisations
       responses:
         '200':
-          $ref: '#/components/responses/EssPollResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/tnchistory':
-    get:
-      parameters:
-        - $ref: '#/components/parameters/OrganisationId'
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Get all TnC data of the given organisation
-      tags:
-        - Organisations
-      responses:
-        '200':
-          $ref: '#/components/responses/OrgTermsAndConditionsPage'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorities':
-    get:
-      parameters:
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Reference Data of all authorities
-      tags:
-        - References - Authority
-      responses:
-        '200':
-          $ref: '#/components/responses/Authorities'
-        '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: '#/components/responses/OrganisationsPage'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -457,52 +59,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         '406':
           $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/termsandconditions':
-    get:
-      parameters:
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: All terms and conditions
-      tags:
-        - References - Terms and Conditions
-      responses:
-        '200':
-          $ref: '#/components/responses/TermsAndConditionsPage'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -529,685 +85,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/OrganisationWithTnc'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}/apidiscoveryendpoints':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/ApiResourceId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Get all Api Discovery Endpoints for the given Authorisation Server and Api Version
-      tags:
-        - Authorisation Servers - API Discovery Endpoints
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiDiscoveryEndpoints'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authoritydomainclaims':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Get the authority domain claims for the given organisation
-      tags:
-        - Organisation Authority Domain Claims
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityDomainClaimsPage'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/certifications':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get all certifications for given authorisation server.
-      tags:
-        - Authorisation Server Certifications
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationServerCertifications'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/SoftwareStatementId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get a software statement
-      tags:
-        - Software Statements for an Organisation
-      responses:
-        '200':
-          $ref: '#/components/responses/SoftwareStatement'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users/{UserEmailId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationDomainName'
-      - $ref: '#/components/parameters/UserEmailId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Authorisation Domain user details
-      tags:
-        - Organisation Domain Users
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomainUsersPage'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certificates':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/SoftwareStatementId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get certificates for the given software statement
-      tags:
-        - Software Statement Certificates
-      responses:
-        '200':
-          $ref: '#/components/responses/CertificatesOrKeys'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/certificates':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get the certificates for the given organisation
-      tags:
-        - Organisation Certificates
-      responses:
-        '200':
-          $ref: '#/components/responses/CertificatesOrKeys'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/contacts/{ContactId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/ContactId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get a contact by Id
-      tags:
-        - Contacts
-      responses:
-        '200':
-          $ref: '#/components/responses/Contact'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/familystatus':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/ApiResourceId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation server API resource by Id and returns the latest family status
-      tags:
-        - Authorisation Servers - API Resources
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiResources'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}/apidiscoveryendpoints/{ApiDiscoveryEndpointId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/ApiResourceId'
-      - $ref: '#/components/parameters/ApiDiscoveryEndpointId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation server API discovery endpoint by Id
-      tags:
-        - Authorisation Servers - API Discovery Endpoints
-      responses:
-        '200':
-          $ref: '#/components/responses/ApiDiscoveryEndpoint'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/softwarestatements':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get all software statements for the given organisation
-      tags:
-        - Software Statements for an Organisation
-      responses:
-        '200':
-          $ref: '#/components/responses/SoftwareStatements'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomainroles':
-    parameters:
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Reference data of all authorisation domain roles
-      tags:
-        - References - Authorisation Domain Role
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomainRolesPage'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorities/{AuthorityId}/authorisationdomains/{AuthorityAuthorisationDomainId}':
-    parameters:
-      - $ref: '#/components/parameters/AuthorityId'
-      - $ref: '#/components/parameters/AuthorityAuthorisationDomainId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authority authorisation domain by Id
-      tags:
-        - References - Authority Authorisation Domain
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorityAuthorisationDomain'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/certificates/kid/{CertificateOrKeyId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/CertificateOrKeyId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Retrieve a certificate with the given CertificateOrKeyId
-      tags:
-        - Organisation Certificates
-      responses:
-        '200':
-          $ref: '#/components/responses/CertificatesOrKey'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}':
-    parameters:
-      - $ref: '#/components/parameters/AuthorisationDomainRoleName'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation domain role by Name
-      tags:
-        - References - Authorisation Domain Role
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomainRole'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/authorityclaims':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/SoftwareStatementId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get the authority claims for the given software statement
-      tags:
-        - Software Statement Authority Claims
-      responses:
-        '200':
-          $ref: '#/components/responses/SoftwareAuthorityClaims'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorities/{AuthorityId}/authorisationdomains':
-    parameters:
-      - $ref: '#/components/parameters/AuthorityId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Reference data of all authorisation domains for an Authority ID
-      tags:
-        - References - Authority Authorisation Domain
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorityAuthorisationDomainsPage'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1276,11 +153,343 @@ paths:
         - authorizer: []
         - oAuth:
           - directory:software
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/authorityclaims/{SoftwareAuthorityClaimId}':
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}':
     parameters:
       - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/SoftwareStatementId'
-      - $ref: '#/components/parameters/SoftwareAuthorityClaimId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation server by Id
+      tags:
+        - Authorisation Servers
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationServer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Get all Api Resources for the given Authorisation Server
+      tags:
+        - Authorisation Servers - API Resources
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResources'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/ApiResourceId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation server API resource by Id
+      tags:
+        - Authorisation Servers - API Resources
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResource'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}/apidiscoveryendpoints':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/ApiResourceId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Get all Api Discovery Endpoints for the given Authorisation Server and Api Version
+      tags:
+        - Authorisation Servers - API Discovery Endpoints
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiDiscoveryEndpoints'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/apiresources/{ApiResourceId}/apidiscoveryendpoints/{ApiDiscoveryEndpointId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/ApiResourceId'
+      - $ref: '#/components/parameters/ApiDiscoveryEndpointId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation server API discovery endpoint by Id
+      tags:
+        - Authorisation Servers - API Discovery Endpoints
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiDiscoveryEndpoint'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/certifications':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get all certifications for given authorisation server.
+      tags:
+        - Authorisation Server Certifications
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationServerCertifications'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/certifications/{AuthorisationServerCertificationId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/AuthorisationServerCertificationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a certification by Id
+      tags:
+        - Authorisation Server Certifications
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationServerCertification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}/familystatus':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationServerId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation server API resource by Id and returns the latest family status
+      tags:
+        - Authorisation Servers - API Resources
+      responses:
+        '200':
+          $ref: '#/components/responses/ApiResources'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorityclaims':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get the authority claims for the given organisation
+      tags:
+        - Organisation Authority Claims
+      responses:
+        '200':
+          $ref: '#/components/responses/OrganisationAuthorityClaims'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
       - $ref: '#/components/parameters/x-fapi-auth-date'
       - $ref: '#/components/parameters/x-fapi-customer-ip-address'
       - $ref: '#/components/parameters/x-fapi-interaction-id'
@@ -1288,10 +497,474 @@ paths:
     get:
       summary: Get an authority claim by Id
       tags:
-        - Software Statement Authority Claims
+        - Organisation Authority Claims
       responses:
         '200':
-          $ref: '#/components/responses/SoftwareAuthorityClaim'
+          $ref: '#/components/responses/OrganisationAuthorityClaim'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}/authorisations':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authority claims' authorisations
+      tags:
+        - Organisation Authority Claims Authorisations
+      responses:
+        '200':
+          $ref: '#/components/responses/OrganisationAuthorityClaimAuthorisations'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}/authorisations/{OrganisationAuthorisationId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
+      - $ref: '#/components/parameters/OrganisationAuthorisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a claim authorisation
+      tags:
+        - Organisation Authority Claims Authorisations
+      responses:
+        '200':
+          $ref: '#/components/responses/OrganisationAuthorityClaimAuthorisation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authoritydomainclaims':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Get the authority domain claims for the given organisation
+      tags:
+        - Organisation Authority Domain Claims
+      responses:
+        '200':
+          $ref: '#/components/responses/OrganisationAuthorityDomainClaimsPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/authoritydomainclaims/{OrganisationAuthorityDomainClaimId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/OrganisationAuthorityDomainClaimId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authority domain claim by Id
+      tags:
+        - Organisation Authority Domain Claims
+      responses:
+        '200':
+          $ref: '#/components/responses/OrganisationAuthorityDomainClaim'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/certificates':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get the certificates for the given organisation
+      tags:
+        - Organisation Certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/CertificatesOrKeys'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/certificates/kid/{CertificateOrKeyId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/CertificateOrKeyId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Retrieve a certificate with the given CertificateOrKeyId
+      tags:
+        - Organisation Certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/CertificatesOrKey'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/certificates/{OrganisationCertificateType}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/OrganisationCertificateType'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+      summary: Get the certificates of the given OrganisationCertificateType for the given organisation
+      tags:
+        - Organisation Certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/CertificatesOrKeys'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/contacts':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Get the contacts for the given organisation
+      tags:
+        - Contacts
+      responses:
+        '200':
+          $ref: '#/components/responses/ContactsPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/contacts/{ContactId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/ContactId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a contact by Id
+      tags:
+        - Contacts
+      responses:
+        '200':
+          $ref: '#/components/responses/Contact'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/ess/poll/{ExternalSigningServiceEnvelopeId}':
+    get:
+      parameters:
+        - $ref: '#/components/parameters/OrganisationId'
+        - $ref: '#/components/parameters/ExternalSigningServiceEnvelopeId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+      summary: Polls the ESS to get the latest status of the signing request
+      tags:
+        - Organisations
+      responses:
+        '200':
+          $ref: '#/components/responses/EssPollResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get all software statements for the given organisation
+      tags:
+        - Software Statements for an Organisation
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareStatements'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a software statement
+      tags:
+        - Software Statements for an Organisation
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareStatement'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -1347,23 +1020,89 @@ paths:
         - authorizer: []
         - oAuth:
           - directory:software
-  '/organisations/{OrganisationId}/certificates/{OrganisationCertificateType}':
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/authorityclaims':
     parameters:
       - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/OrganisationCertificateType'
+      - $ref: '#/components/parameters/SoftwareStatementId'
       - $ref: '#/components/parameters/x-fapi-auth-date'
       - $ref: '#/components/parameters/x-fapi-customer-ip-address'
       - $ref: '#/components/parameters/x-fapi-interaction-id'
       - $ref: '#/components/parameters/x-customer-user-agent'
     get:
-      parameters:
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Get the certificates of the given OrganisationCertificateType for the given organisation
+      summary: Get the authority claims for the given software statement
       tags:
-        - Organisation Certificates
+        - Software Statement Authority Claims
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareAuthorityClaims'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/authorityclaims/{SoftwareAuthorityClaimId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/SoftwareAuthorityClaimId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authority claim by Id
+      tags:
+        - Software Statement Authority Claims
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareAuthorityClaim'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certificates':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get certificates for the given software statement
+      tags:
+        - Software Statement Certificates
       responses:
         '200':
           $ref: '#/components/responses/CertificatesOrKeys'
@@ -1371,6 +1110,729 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certificates/{SoftwareStatementCertificateOrKeyType}/{CertificateOrKeyId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/SoftwareStatementCertificateOrKeyType'
+      - $ref: '#/components/parameters/CertificateOrKeyId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get the certificate of the given type and ID for the given software statement
+      tags:
+        - Software Statement Certificates
+      responses:
+        '200':
+          $ref: '#/components/responses/CertificatesOrKey'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certifications':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get all certifications for given Software Statement.
+      tags:
+        - Software Statement Certifications
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareStatementCertifications'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/certifications/{SoftwareStatementCertificationId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/SoftwareStatementId'
+      - $ref: '#/components/parameters/SoftwareStatementCertificationId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a certification by Id
+      tags:
+        - Software Statement Certifications
+      responses:
+        '200':
+          $ref: '#/components/responses/SoftwareStatementCertification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/metadata':
+    get:
+      parameters:
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: Get all metadata of a specific type
+        - $ref: '#/components/parameters/OrganisationId'
+        - $ref: '#/components/parameters/SoftwareStatementId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+      summary: Get all metadata associated with a software statement
+      tags:
+        - Software Statement - Metadata
+      responses:
+        '200':
+          $ref: '#/components/responses/MetadataList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/tnchistory':
+    get:
+      parameters:
+        - $ref: '#/components/parameters/OrganisationId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Get all TnC data of the given organisation
+      tags:
+        - Organisations
+      responses:
+        '200':
+          $ref: '#/components/responses/OrgTermsAndConditionsPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationDomainName'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: All users for the given authorisation domain
+      tags:
+        - Organisation Domain Users
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainUsersPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/organisations/{OrganisationId}/{AuthorisationDomainName}/users/{UserEmailId}':
+    parameters:
+      - $ref: '#/components/parameters/OrganisationId'
+      - $ref: '#/components/parameters/AuthorisationDomainName'
+      - $ref: '#/components/parameters/UserEmailId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Authorisation Domain user details
+      tags:
+        - Organisation Domain Users
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainUsersPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomainroles':
+    parameters:
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Reference data of all authorisation domain roles
+      tags:
+        - References - Authorisation Domain Role
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainRolesPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}':
+    parameters:
+      - $ref: '#/components/parameters/AuthorisationDomainRoleName'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation domain role by Name
+      tags:
+        - References - Authorisation Domain Role
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainRole'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}/metadata':
+    get:
+      parameters:
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: Get all of a specific type of metadata
+        - $ref: '#/components/parameters/AuthorisationDomainRoleName'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+      summary: Get metadata associated with an authorisation domain role
+      tags:
+        - References - Authorisation Domain Role Metadata
+      responses:
+        '200':
+          $ref: '#/components/responses/MetadataList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}/metadata/{MetadataId}':
+    get:
+      parameters:
+        - $ref: '#/components/parameters/MetadataId'
+        - $ref: '#/components/parameters/AuthorisationDomainRoleName'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+      summary: Get metadata associated with an authorisation domain role
+      tags:
+        - References - Authorisation Domain Role Metadata
+      responses:
+        '200':
+          $ref: '#/components/responses/Metadata'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomains':
+    parameters:
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Reference data of all authorisation domains
+      tags:
+        - References - Authorisation Domain
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomainsPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorisationdomains/{AuthorisationDomainName}':
+    parameters:
+      - $ref: '#/components/parameters/AuthorisationDomainName'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authorisation domain by Name
+      tags:
+        - References - Authorisation Domain
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorisationDomain'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorities':
+    get:
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/x-customer-user-agent'
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Reference Data of all authorities
+      tags:
+        - References - Authority
+      responses:
+        '200':
+          $ref: '#/components/responses/Authorities'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorities/{AuthorityId}':
+    parameters:
+      - $ref: '#/components/parameters/AuthorityId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get a reference authority by Id
+      tags:
+        - References - Authority
+      responses:
+        '200':
+          $ref: '#/components/responses/Authority'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorities/{AuthorityId}/authorisationdomains':
+    parameters:
+      - $ref: '#/components/parameters/AuthorityId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The page number to return of the result set
+        - in: query
+          name: size
+          schema:
+            type: integer
+          description: The size of the pages to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: The field name to sort
+      summary: Reference data of all authorisation domains for an Authority ID
+      tags:
+        - References - Authority Authorisation Domain
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorityAuthorisationDomainsPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '406':
+          $ref: '#/components/responses/NotAcceptable'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/UpstreamTimeout'
+      security:
+        - authorizer: []
+        - oAuth:
+          - directory:software
+  '/references/authorities/{AuthorityId}/authorisationdomains/{AuthorityAuthorisationDomainId}':
+    parameters:
+      - $ref: '#/components/parameters/AuthorityId'
+      - $ref: '#/components/parameters/AuthorityAuthorisationDomainId'
+      - $ref: '#/components/parameters/x-fapi-auth-date'
+      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+      - $ref: '#/components/parameters/x-fapi-interaction-id'
+      - $ref: '#/components/parameters/x-customer-user-agent'
+    get:
+      summary: Get an authority authorisation domain by Id
+      tags:
+        - References - Authority Authorisation Domain
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthorityAuthorisationDomain'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
         '406':
@@ -1438,122 +1900,13 @@ paths:
         - authorizer: []
         - oAuth:
           - directory:software
-  '/organisations/{OrganisationId}/authoritydomainclaims/{OrganisationAuthorityDomainClaimId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/OrganisationAuthorityDomainClaimId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authority domain claim by Id
-      tags:
-        - Organisation Authority Domain Claims
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityDomainClaim'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/softwarestatements/{SoftwareStatementId}/metadata':
+  '/references/termsandconditions':
     get:
       parameters:
-        - in: query
-          name: type
-          schema:
-            type: string
-          description: Get all metadata of a specific type
-        - $ref: '#/components/parameters/OrganisationId'
-        - $ref: '#/components/parameters/SoftwareStatementId'
         - $ref: '#/components/parameters/x-fapi-auth-date'
         - $ref: '#/components/parameters/x-fapi-customer-ip-address'
         - $ref: '#/components/parameters/x-fapi-interaction-id'
         - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Get all metadata associated with a software statement
-      tags:
-        - Software Statement - Metadata
-      responses:
-        '200':
-          $ref: '#/components/responses/MetadataList'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}/authorisations/{OrganisationAuthorisationId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
-      - $ref: '#/components/parameters/OrganisationAuthorisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get a claim authorisation
-      tags:
-        - Organisation Authority Claims Authorisations
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityClaimAuthorisation'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations':
-    get:
-      parameters:
         - in: query
           name: page
           schema:
@@ -1569,305 +1922,18 @@ paths:
           schema:
             type: string
           description: The field name to sort
-        - in: query
-          name: displayMine
-          schema:
-            type: string
-          description: Set to an email value to instruct the backend to only return organisations related to the user
-        - in: query
-          name: filterBy
-          schema:
-            type: string
-          description: Will return organisations with data like the provided value
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Get all organisations that the logged in user is authorised to retrieve from trusted  services.
+      summary: All terms and conditions
       tags:
-        - Organisations
+        - References - Terms and Conditions
       responses:
         '200':
-          $ref: '#/components/responses/OrganisationsPage'
+          $ref: '#/components/responses/TermsAndConditionsPage'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}/metadata/{MetadataId}':
-    get:
-      parameters:
-        - $ref: '#/components/parameters/MetadataId'
-        - $ref: '#/components/parameters/AuthorisationDomainRoleName'
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Get metadata associated with an authorisation domain role
-      tags:
-        - References - Authorisation Domain Role Metadata
-      responses:
-        '200':
-          $ref: '#/components/responses/Metadata'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorityclaims':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get the authority claims for the given organisation
-      tags:
-        - Organisation Authority Claims
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityClaims'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorities/{AuthorityId}':
-    parameters:
-      - $ref: '#/components/parameters/AuthorityId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get a reference authority by Id
-      tags:
-        - References - Authority
-      responses:
-        '200':
-          $ref: '#/components/responses/Authority'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorisationservers/{AuthorisationServerId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/AuthorisationServerId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authorisation server by Id
-      tags:
-        - Authorisation Servers
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationServer'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomainroles/{AuthorisationDomainRoleName}/metadata':
-    get:
-      parameters:
-        - in: query
-          name: type
-          schema:
-            type: string
-          description: Get all of a specific type of metadata
-        - $ref: '#/components/parameters/AuthorisationDomainRoleName'
-        - $ref: '#/components/parameters/x-fapi-auth-date'
-        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-        - $ref: '#/components/parameters/x-fapi-interaction-id'
-        - $ref: '#/components/parameters/x-customer-user-agent'
-      summary: Get metadata associated with an authorisation domain role
-      tags:
-        - References - Authorisation Domain Role Metadata
-      responses:
-        '200':
-          $ref: '#/components/responses/MetadataList'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/organisations/{OrganisationId}/authorityclaims/{OrganisationAuthorityClaimId}':
-    parameters:
-      - $ref: '#/components/parameters/OrganisationId'
-      - $ref: '#/components/parameters/OrganisationAuthorityClaimId'
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      summary: Get an authority claim by Id
-      tags:
-        - Organisation Authority Claims
-      responses:
-        '200':
-          $ref: '#/components/responses/OrganisationAuthorityClaim'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '502':
-          $ref: '#/components/responses/BadGateway'
-        '504':
-          $ref: '#/components/responses/UpstreamTimeout'
-      security:
-        - authorizer: []
-        - oAuth:
-          - directory:software
-  '/references/authorisationdomains':
-    parameters:
-      - $ref: '#/components/parameters/x-fapi-auth-date'
-      - $ref: '#/components/parameters/x-fapi-customer-ip-address'
-      - $ref: '#/components/parameters/x-fapi-interaction-id'
-      - $ref: '#/components/parameters/x-customer-user-agent'
-    get:
-      parameters:
-        - in: query
-          name: page
-          schema:
-            type: integer
-          description: The page number to return of the result set
-        - in: query
-          name: size
-          schema:
-            type: integer
-          description: The size of the pages to return
-        - in: query
-          name: sort
-          schema:
-            type: string
-          description: The field name to sort
-      summary: Reference data of all authorisation domains
-      tags:
-        - References - Authorisation Domain
-      responses:
-        '200':
-          $ref: '#/components/responses/AuthorisationDomainsPage'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '406':
-          $ref: '#/components/responses/NotAcceptable'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -2036,6 +2102,13 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/SoftwareStatementCertificateOrKeyType'
+    SoftwareStatementCertificationId:
+      description: Software Statement certification Id
+      in: path
+      name: SoftwareStatementCertificationId
+      required: true
+      schema:
+        $ref: '#/components/schemas/SoftwareStatementCertificationId'
     SoftwareStatementId:
       description: The software statement ID
       in: path
@@ -2285,6 +2358,20 @@ components:
             $ref: '#/components/schemas/ContactRequest'
       description: Properties to update contacts
       required: true
+    DocusignOrgRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DocusignOrgRequest'
+      description: Amend a certificate, current functionality supports Revoke Reason
+      required: true
+    DocusignPost:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DocusignPost'
+      description: A post from docusign to the directory
+      required: true
     EssSignRequest:
       content:
         application/json:
@@ -2382,6 +2469,13 @@ components:
             $ref: '#/components/schemas/SoftwareAuthorityClaimUpdateRequest'
       description: Software Statement authority claim's update payload
       required: true
+    SoftwareStatementCertificationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SoftwareStatementCertificationRequest'
+      description: Properties to create/update a certification for an software statement
+      required: true
     SoftwareStatementRequest:
       content:
         application/json:
@@ -2447,7 +2541,8 @@ components:
       description: Update all webhooks response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ApiDiscoveryEndpoint:
       content:
         application/json:
@@ -2456,7 +2551,8 @@ components:
       description: Authorisation server response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ApiDiscoveryEndpointFamilyResponse:
       content:
         application/json:
@@ -2465,7 +2561,8 @@ components:
       description: Api endpoint creation response with family complete flag
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ApiDiscoveryEndpoints:
       content:
         application/json:
@@ -2474,7 +2571,8 @@ components:
       description: Authorisation server response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ApiResource:
       content:
         application/json:
@@ -2483,7 +2581,8 @@ components:
       description: Authorisation server Api Resource response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ApiResources:
       content:
         application/json:
@@ -2492,7 +2591,8 @@ components:
       description: Authorisation server Api Resources response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomain:
       content:
         application/json:
@@ -2501,7 +2601,8 @@ components:
       description: Data of an authorisation domain mapped to an authority
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomainRole:
       content:
         application/json:
@@ -2510,7 +2611,8 @@ components:
       description: Role data
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomainRolesPage:
       content:
         application/json:
@@ -2519,7 +2621,8 @@ components:
       description: All data of authorisation domains mapped to an authority
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomainUser:
       content:
         application/json:
@@ -2528,7 +2631,8 @@ components:
       description: User data belonging to an authorisation domain
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomainUsersPage:
       content:
         application/json:
@@ -2537,7 +2641,8 @@ components:
       description: All users belonging to an authorisation domain
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationDomainsPage:
       content:
         application/json:
@@ -2546,7 +2651,8 @@ components:
       description: All data of authorisation domains mapped to an authority
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationServer:
       content:
         application/json:
@@ -2555,7 +2661,8 @@ components:
       description: Authorisation server response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationServerCertification:
       content:
         application/json:
@@ -2565,7 +2672,8 @@ components:
         id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationServerCertifications:
       content:
         application/json:
@@ -2575,7 +2683,8 @@ components:
         id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorisationServers:
       content:
         application/json:
@@ -2584,7 +2693,8 @@ components:
       description: All authorisation servers for the org
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Authorities:
       content:
         application/json:
@@ -2594,7 +2704,8 @@ components:
         Reference data table for all authorities with their countries
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Authority:
       content:
         application/json:
@@ -2604,7 +2715,8 @@ components:
         Get a reference authority by Id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorityAuthorisationDomain:
       content:
         application/json:
@@ -2613,7 +2725,8 @@ components:
       description: Authority to domain mapping data
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     AuthorityAuthorisationDomainsPage:
       content:
         application/json:
@@ -2622,12 +2735,14 @@ components:
       description: All data of authorisation domains mapped to an authority
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     BadGateway:
       description: Bad Gateway
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     BadRequest:
       content:
         application/json:
@@ -2636,7 +2751,8 @@ components:
       description: Bad Request
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     CertificatesOrKey:
       content:
         application/jwk+json:
@@ -2645,7 +2761,8 @@ components:
       description: A certificate object
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     CertificatesOrKeys:
       content:
         application/jwk-set+json:
@@ -2660,7 +2777,8 @@ components:
       description: Certification manager data
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     CertificationManagers:
       content:
         application/json:
@@ -2669,7 +2787,8 @@ components:
       description: All certification managers
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ClientCreationResponse:
       content:
         application/json:
@@ -2679,12 +2798,14 @@ components:
         Creates an OAuth Client in the OpenID Server
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Conflict:
       description: Conflict
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Contact:
       content:
         application/json:
@@ -2693,7 +2814,8 @@ components:
       description: A contact object
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     ContactsPage:
       content:
         application/json:
@@ -2702,7 +2824,8 @@ components:
       description: Paged Contacts Snapshot
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     EssPollAllResponse:
       content:
         application/json:
@@ -2711,7 +2834,8 @@ components:
       description: External Signing Service Poll All response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     EssPollResponse:
       content:
         application/json:
@@ -2720,17 +2844,20 @@ components:
       description: External Signing Service Poll response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Forbidden:
       description: Forbidden
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     InternalServerError:
       description: Internal Server Error
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Introspection:
       content:
         application/json:
@@ -2740,7 +2867,8 @@ components:
         metadata for token
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Metadata:
       content:
         application/json:
@@ -2749,7 +2877,8 @@ components:
       description: Single metadata object
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     MetadataList:
       content:
         application/json:
@@ -2758,17 +2887,20 @@ components:
       description: List of all metadata associated with an object
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     NoContent:
       description: No Content
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     NotAcceptable:
       description: Not Acceptable
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     NotFound:
       content:
         application/json:
@@ -2777,12 +2909,14 @@ components:
       description: Not found
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Ok:
       description: No Content
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrgTermsAndConditionsDetail:
       content:
         application/json:
@@ -2791,7 +2925,8 @@ components:
       description: Details of the TnC and external signing service
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrgTermsAndConditionsPage:
       content:
         application/json:
@@ -2800,7 +2935,8 @@ components:
       description: Org TnCs history
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Organisation:
       content:
         application/json:
@@ -2810,7 +2946,8 @@ components:
         Full details of the organisation
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAdminUser:
       content:
         application/json:
@@ -2819,7 +2956,8 @@ components:
       description: Admin user details
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAdminUsers:
       content:
         application/json:
@@ -2828,7 +2966,8 @@ components:
       description: All admin users for this org
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAuthorityClaim:
       content:
         application/json:
@@ -2843,7 +2982,8 @@ components:
       description: Authorisations response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAuthorityClaimAuthorisations:
       content:
         application/json:
@@ -2852,7 +2992,8 @@ components:
       description: Authorisations response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAuthorityClaims:
       content:
         application/json:
@@ -2861,7 +3002,8 @@ components:
       description: All authority claims for the organisation
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAuthorityDomainClaim:
       content:
         application/json:
@@ -2870,7 +3012,8 @@ components:
       description: All authority to domain mappings data
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationAuthorityDomainClaimsPage:
       content:
         application/json:
@@ -2879,7 +3022,8 @@ components:
       description: All data of an organisation's authority domain claims
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationConformanceTestResult:
       content:
         application/json:
@@ -2889,7 +3033,8 @@ components:
         Result of the conformance suite test run
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationEnrolments:
       content:
         application/json:
@@ -2899,7 +3044,8 @@ components:
         Full details of the organisation enrolment response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationSnapshot:
       content:
         application/json:
@@ -2914,7 +3060,8 @@ components:
       description: Full details of the organisation including TnC information
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationsExportOpenData:
       content:
         application/json:
@@ -2923,7 +3070,8 @@ components:
       description: Export the open-data for all the organisations
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationsPage:
       content:
         application/json:
@@ -2932,7 +3080,8 @@ components:
       description: All organisations
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationsRoles:
       content:
         application/json:
@@ -2941,10 +3090,8 @@ components:
       description: Export the roles for all the organisations
       headers:
         x-fapi-interaction-id:
-          description: An RFC4122 UID used as a correlation id.
           schema:
-            example: 73cac523-d3ae-2289-b106-330a6218710d
-            type: string
+            $ref: '#/components/schemas/xFapiInteractionId'
     OrganisationsSnapshot:
       content:
         application/json:
@@ -2953,7 +3100,8 @@ components:
       description: Snapshot data of all the organisations
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     RetrieveTokenResponse:
       content:
         application/json:
@@ -2963,7 +3111,8 @@ components:
         Access token response
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SoftwareAuthorityClaim:
       content:
         application/json:
@@ -2972,7 +3121,8 @@ components:
       description: Authority claim for the given Id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SoftwareAuthorityClaims:
       content:
         application/json:
@@ -2981,7 +3131,8 @@ components:
       description: Authority claim for the given Id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SoftwareStatement:
       content:
         application/json:
@@ -2990,7 +3141,8 @@ components:
       description: Get the software statements with the given id
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SoftwareStatementAssertion:
       content:
         application/json:
@@ -3002,7 +3154,28 @@ components:
       description: OK
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
+    SoftwareStatementCertification:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SoftwareStatementCertification'
+      description: Software Statement certification for the given certification id
+      headers:
+        x-fapi-interaction-id:
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
+    SoftwareStatementCertifications:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SoftwareStatementCertifications'
+      description: Software Statement certification for the given certification id
+      headers:
+        x-fapi-interaction-id:
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SoftwareStatements:
       content:
         application/json:
@@ -3011,7 +3184,8 @@ components:
       description: All software statements for the org
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SuperUser:
       content:
         application/json:
@@ -3020,7 +3194,8 @@ components:
       description: Super user data
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     SuperUsers:
       content:
         application/json:
@@ -3029,7 +3204,8 @@ components:
       description: All organisations
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     TermsAndConditionsItem:
       content:
         application/json:
@@ -3038,7 +3214,8 @@ components:
       description: Details of the TnC item
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     TermsAndConditionsPage:
       content:
         application/json:
@@ -3047,23 +3224,27 @@ components:
       description: Paged data of TnC items
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     TooManyRequests:
       description: Too many requests, maximum capacity reached. Requests are now throttled.
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     Unauthorized:
       description: Unauthorized
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     UpstreamTimeout:
       description: Upstream timeout, insufficient capacity to serve request. More
         capacity being brought online. Please try again.
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     UserDetail:
       content:
         application/json:
@@ -3072,7 +3253,8 @@ components:
       description: Details of the user
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     UserOPInfo:
       content:
         application/json:
@@ -3081,7 +3263,8 @@ components:
       description: User information from the OpenId Provider
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     UserTermsAndConditionsPage:
       content:
         application/json:
@@ -3090,7 +3273,8 @@ components:
       description: User TnCs history
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
     WellKnown:
       content:
         application/json:
@@ -3099,7 +3283,8 @@ components:
       description: endpoint discovery for well known endpoint
       headers:
         x-fapi-interaction-id:
-          $ref: '#/components/schemas/xFapiInteractionId'
+          schema:
+            $ref: '#/components/schemas/xFapiInteractionId'
   schemas:
     AccessTokenRequest:
       properties:
@@ -3245,7 +3430,7 @@ components:
       type: array
     ApiFamilyType:
       description: The type of API this record describes
-      maxLength: 40
+      maxLength: 128
       minLength: 1
       type: string
       x-required-message: Family Type must be provided
@@ -3263,7 +3448,8 @@ components:
           $ref: '#/components/schemas/ApiResourceId'
         ApiVersion:
           description: The version number of the API
-          type: number
+          pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
+          type: string
         CertificationExpirationDate:
           $ref: '#/components/schemas/CertificationExpirationDate'
         CertificationStartDate:
@@ -3295,7 +3481,8 @@ components:
           $ref: '#/components/schemas/ApiFamilyType'
         ApiVersion:
           description: The version number of the API
-          type: number
+          pattern: ^[0-9]+\.[0-9]+\.[0-9]+$
+          type: string
           x-required-message: Version must be provided
         CertificationStartDate:
           maxLength: 10
@@ -3386,7 +3573,7 @@ components:
       type: object
     AuthorisationDomainRoleName:
       description: Authorisation Domain Role Name
-      maxLength: 30
+      maxLength: 40
       type: string
     AuthorisationDomainRoleRequest:
       properties:
@@ -3401,7 +3588,7 @@ components:
           type: string
         AuthorisationDomainRoleName:
           description: The authorisation domain role name
-          maxLength: 30
+          maxLength: 40
           minLength: 1
           type: string
           x-required-message: The authorisation domain role name is mandatory
@@ -3550,8 +3737,18 @@ components:
           type: array
         AuthorisationServerId:
           $ref: '#/components/schemas/AuthorisationServerId'
+        AutoRegistrationNotificationWebhook:
+          description: A compliant URI to subscribe to the software statement onboarding
+            webhook
+          format: uri
+          maxLength: 255
+          pattern: ^(http:\/\/|https:\/\/).*
+          type: string
+          x-pattern-message: WebhookUri must be in a URI format https://... or http://...
         AutoRegistrationSupported:
           default: false
+          description: Flag to denote if this authorisation server supports the automatic
+            onboarding of software statement clients
           type: boolean
         CustomerFriendlyDescription:
           maxLength: 255
@@ -3575,6 +3772,10 @@ components:
           type: string
           x-pattern-message: DeveloperPortalUri must be in a URI format https://...
             or http://...
+        Issuer:
+          description: An issuer value pulled from the well-known endpoint
+          format: uri
+          type: string
         NotificationWebhook:
           description: A compliant URI
           format: uri
@@ -3584,7 +3785,7 @@ components:
           x-pattern-message: WebhookUri must be in a URI format https://... or http://...
         NotificationWebhookAddedDate:
           description: Creation date
-          example: "2021-01-30T08:30:00Z"
+          example: "2021-01-30"
           format: date
           type: string
         NotificationWebhookStatus:
@@ -3707,8 +3908,18 @@ components:
       type: string
     AuthorisationServerRequest:
       properties:
+        AutoRegistrationNotificationWebhook:
+          description: A compliant URI to subscribe to the software statement onboarding
+            webhook
+          format: uri
+          maxLength: 255
+          pattern: ^(http:\/\/|https:\/\/).*
+          type: string
+          x-pattern-message: WebhookUri must be in a URI format https://... or http://...
         AutoRegistrationSupported:
-          description: Default is true
+          default: false
+          description: Flag to denote if this authorisation server supports the automatic
+            onboarding of software statement clients
           type: boolean
           x-required-message: AutoRegistrationSupported must be provided
         CustomerFriendlyDescription:
@@ -3773,9 +3984,7 @@ components:
       required:
       - AutoRegistrationSupported
       - CustomerFriendlyName
-      - CustomerFriendlyLogoUri
       - OpenIDDiscoveryDocument
-      - PayloadSigningCertLocationUri
       - CustomerFriendlyDescription
       type: object
     AuthorisationServers:
@@ -4513,6 +4722,151 @@ components:
         totalSize:
           type: integer
       type: object
+    DocusignOrgRequest:
+      allOf:
+      - $ref: '#/components/schemas/OrganisationRequest'
+      - properties:
+          BussContactEmail:
+            description: Business contact email
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: BussContactEmail must be provided
+          BussContactName:
+            description: Business contact full name
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: BussContactName must be provided
+          BussContactPhone:
+            description: Business contact phone number
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: BussContactPhone must be provided
+          CertIssuer:
+            description: Certificate Issuer
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: CertIssuer must be provided
+          DialogEqId:
+            description: Dialog Eq Id
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: DialogEqId must be provided
+          EnvironmentStartdate:
+            description: Environment start date
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: EnvironmentStartdate must be provided
+          FirstPointOfContact:
+            description: First point of contact
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: PlatformAccessing must be provided
+          LegalAccessEntity:
+            description: Legal Access Entity
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: LegalAccessEntity must be provided
+          OrgBankLineId:
+            description: Organisation Bankline Id
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: OrgBankLineId must be provided
+          OrgIndividualId:
+            description: Organisation Invdividual Id
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: OrgIndividualId must be provided
+          OrgNumber:
+            description: Organisation Number (BINM)
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: OrgNumber must be provided
+          PaymentSought:
+            description: Payment being sought
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: PaymentSought must be provided
+          PlatformAccessing:
+            description: Platform being accessed
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: PlatformAccessing must be provided
+          PlatformApiType:
+            description: Platform Api type
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: PlatformApiType must be provided
+          ProjectDescription:
+            description: Project description
+            maxLength: 512
+            minLength: 1
+            type: string
+            x-required-message: ProjectDescription must be provided
+          RedirectUri:
+            description: Redirect Uri
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: RedirectUri must be provided
+          SecurityProfile:
+            description: Security Profile
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: SecurityProfile must be provided
+          TechContactEmail:
+            description: Technical contact email
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: TechContactEmail must be provided
+          TechContactName:
+            description: Technical contact name
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: TechContactName must be provided
+          TechContactPhone:
+            description: Technical contact phone number
+            maxLength: 30
+            minLength: 1
+            type: string
+            x-required-message: PlatformAccessing must be provided
+        type: object
+    DocusignPost:
+      properties:
+        data:
+          $ref: '#/components/schemas/DocusignPostData'
+        event:
+          description: The docusign event type
+          type: string
+          x-required-message: event must be provided
+      type: object
+    DocusignPostData:
+      description: Data associated with the docusign event
+      properties:
+        envelopeId:
+          description: The envelope ID
+          type: string
+          x-required-message: data.envelopeId must be provided
+        envelopeSummary:
+          $ref: '#/components/schemas/EnvelopeSummary'
+      type: object
+      x-required-message: data must be provided
     DomainRoleDetail:
       properties:
         AuthorisationDomainName:
@@ -4526,6 +4880,15 @@ components:
         System:
           $ref: '#/components/schemas/SystemEnum'
       type: object
+    EnvelopeSummary:
+      description: Summary of the envelope
+      properties:
+        status:
+          description: The status of the envelope
+          type: string
+          x-required-message: data.envelopeSummary.status must be provided
+      type: object
+      x-required-message: data.envelopeSummary must be provided
     EssPollResponse:
       properties:
         EssEnvelopeId:
@@ -5157,6 +5520,7 @@ components:
       - rtsseal
       - brseal
       - brseal_ext
+      - rtstransport_rs
       type: string
     OrganisationConformanceTest:
       properties:
@@ -5981,6 +6345,7 @@ components:
           description: The Software Statement redirect compliant URI
           items:
             format: uri
+            maxLength: 255
             pattern: ^(http:\/\/|https:\/\/).*
             type: string
             x-pattern-message: RedirectUri must be in a URI format https://... or
@@ -5990,6 +6355,10 @@ components:
         RtsClientCreated:
           description: Client created flag
           type: boolean
+        SoftwareStatementCertifications:
+          items:
+            $ref: '#/components/schemas/SoftwareStatementCertification'
+          type: array
         SoftwareStatementId:
           $ref: '#/components/schemas/SoftwareStatementId'
         Status:
@@ -6028,6 +6397,79 @@ components:
       - brcac
       - brcac_ext
       type: string
+    SoftwareStatementCertification:
+      properties:
+        CertificationExpirationDate:
+          $ref: '#/components/schemas/CertificationExpirationDate'
+        CertificationId:
+          $ref: '#/components/schemas/SoftwareStatementCertificationId'
+        CertificationStartDate:
+          $ref: '#/components/schemas/CertificationStartDate'
+        CertificationURI:
+          $ref: '#/components/schemas/ApiCertificationUri'
+        ProfileVariant:
+          description: Type of certification
+          maximum: 128
+          minimum: 1
+          type: string
+          x-required-message: Certification needs to have a type
+        ProfileVersion:
+          description: The version number of the certification
+          type: number
+          x-required-message: Version must be provided
+        SoftwareStatementId:
+          $ref: '#/components/schemas/SoftwareStatementId'
+        Status:
+          default: Awaiting Certification
+          description: Is this certification current or expired
+          enum:
+          - Awaiting Certification
+          - Certified
+          - Deprecated
+          - Rejected
+          - Self-Certified
+          type: string
+      type: object
+    SoftwareStatementCertificationId:
+      description: Unique ID associated with the software statement certification
+      maxLength: 40
+      minLength: 1
+      type: string
+    SoftwareStatementCertificationRequest:
+      properties:
+        CertificationStartDate:
+          maxLength: 10
+          pattern: ^[0-3][0-9]/[0-1][0-9]/2([0-9]{3})$
+          type: string
+          x-pattern-message: Date must match the format of dd/mm/yyyy, for example
+            31/12/2021
+        CertificationURI:
+          $ref: '#/components/schemas/ApiCertificationUri'
+        ProfileVariant:
+          description: Type of certification
+          maximum: 128
+          minimum: 1
+          type: string
+          x-required-message: Certification needs to have a type
+        ProfileVersion:
+          description: The version number of the certification
+          type: number
+          x-required-message: Version must be provided
+        Status:
+          default: Awaiting Certification
+          description: Is this certification current or expired
+          enum:
+          - Awaiting Certification
+          - Certified
+          - Deprecated
+          - Rejected
+          - Self-Certified
+          type: string
+      type: object
+    SoftwareStatementCertifications:
+      items:
+        $ref: '#/components/schemas/SoftwareStatementCertification'
+      type: array
     SoftwareStatementId:
       description: Unique Software Statement Id
       maxLength: 40
