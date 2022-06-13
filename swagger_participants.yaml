@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "Participantes Open Banking Brasil"
   version: "1.0"
-  description: Raidiam Trust Services Relaying Parties API
+  description: Informações sobre os participantes do Open Banking Brasil que estão registrados no Diretório.
   license:
     name: MIT
     url: https://mit-license.org
