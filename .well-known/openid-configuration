@@ -97,7 +97,6 @@
 ],
 "request_parameter_supported": true,
 "request_uri_parameter_supported": true,
-"userinfo_endpoint": "https://auth.mockbank.poc.raidiam.io/me",
 "authorization_signing_alg_values_supported": [
 "PS256"
 ],
@@ -145,7 +144,6 @@
 "introspection_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/token/introspection",
 "device_authorization_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/device/auth",
 "registration_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/reg",
-"userinfo_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/me",
 "pushed_authorization_request_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/request",
 "backchannel_authentication_endpoint": "https://matls-auth.mockbank.poc.raidiam.io/backchannel"
 }
