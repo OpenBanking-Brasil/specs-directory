@@ -1,0 +1,88 @@
+{
+"data": {
+"brand": {
+"name": "Itaú Unibanco",
+"companies": [
+{
+"name": "Itaú Unibanco S.A.",
+"cnpjNumber": "60701190469234",
+"branches": [
+{
+"identification": {
+"type": "UAD",
+"code": "29",
+"checkDigit": "N",
+"name": "UAD DCMM DATA CENTER MOGI MIRIM"
+},
+"postalAddress": {
+"address": "AVENIDA ROMARIO SCHINCARIOL, 1111",
+"districtName": "DISTRITO INDUSTRIAL II",
+"townName": "MOGI MIRIM",
+"countrySubDivision": "SP",
+"postCode": "13803584"
+},
+"availability": {
+"standards": [
+{
+"weekday": "DOMINGO",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "SEGUNDA_FEIRA",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "TERCA_FEIRA",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "QUARTA_FEIRA",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "QUINTA_FEIRA",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "SEXTA_FEIRA",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+},
+{
+"weekday": "SABADO",
+"openingTime": "00:00:00Z",
+"closingTime": "23:59:00Z"
+}
+],
+"exception": "Exceto feriados municipais,nacionais e estaduais"
+},
+"services": [
+{
+"code": "OUTROS_PRODUTOS_SERVICOS",
+"name": "OUTROS_PRODUTOS_SERVICOS",
+"additionalInfo": "SERVICOS_ADMINISTRATIVOS"
+}
+]
+}
+]
+}
+]
+}
+},
+"links": {
+"self": "https://api.itau/open-banking/channels/v1/branches?page=1&page-size=1",
+"first": "https://api.itau/open-banking/channels/v1/branches?page=1&page-size=1",
+"prev": null,
+"next": "https://api.itau/open-banking/channels/v1/branches?page=2&page-size=1",
+"last": "https://api.itau/open-banking/channels/v1/branches?page=4267&page-size=1"
+},
+"meta": {
+"totalRecords": 4267,
+"totalPages": 4267
+}
+}
