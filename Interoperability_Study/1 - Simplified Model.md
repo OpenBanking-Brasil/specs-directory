@@ -1,6 +1,12 @@
-# **Simplified Interoperability Model**
+# **Simplified Proposal for Interoperability**
 
 This document is a draft paper and is intended to be used as a discussion document between Open Finance and Open Insurance Initial Structures around the topic defined on the [RESOLUÇÃO CONJUNTA Nº 5, DE 20 DE MAIO DE 2022](https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20Conjunta&numero=5)
+
+This study is the first one out of three:
+
+1. Simplified Proposal for Interoperability - Minimal Requirements to Enable Interoperability between OPF and OPIN
+2. FAPI 2.0 Suggested Model - Impacts and Suggested changes around security standards to enable FAPI 2.0
+3. Federation Suggested Model - Overview around Federation specification and suggested approach on updating the Security Standards to enable federation
 
 # Table of Contents
 
@@ -27,7 +33,7 @@ This document is a draft paper and is intended to be used as a discussion docume
 
 # Version 
 
-**Draft v.0.2 - Presented on 12/06 at Joint OPF/OPIN Meeting**
+**Draft v.0.3 - Presented on 12/06 at Joint OPF/OPIN Meeting**
 
 # **Disclaimer**
 Before evaluating this document, please take into account the following critical points:
