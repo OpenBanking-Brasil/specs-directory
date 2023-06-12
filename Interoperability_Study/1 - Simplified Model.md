@@ -1,9 +1,34 @@
-# **Simplied Interoperability Model**
-# **Version**
-**Draft v.0.2 - Erick Domingues**
+# **Simplified Interoperability Model**
 
-[Lucid Chart Used for Diagrams](https://lucid.app/lucidchart/97b76c0c-c368-437c-b326-097dbbedf2af/edit?beaconFlowId=E0A20AFD03F0101D&invitationId=inv_e52166c5-c267-432a-bf10-75bdf5208f7b&page=0_0)
-# **Table of Contents**
+This document is a draft paper and is intended to be used as a discussion document between Open Finance and Open Insurance Initial Structures around the topic defined on the [RESOLUÇÃO CONJUNTA Nº 5, DE 20 DE MAIO DE 2022](https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20Conjunta&numero=5)
+
+# Table of Contents
+
+1. [Version](#version)
+2. [Disclaimer](#disclaimer)
+3. [Objective](#objective)
+4. [Premises](#premises)
+5. [Problem Statement](#problem-statement)
+6. [Standardization Proposal](#standardization-proposal)
+   - [A1/B1/C1 - mTLS Certificates to be Trusted](#a1b1c1---mtls-certificates-to-be-trusted)
+      - [Change 1: Consolidate Trusted Certificate Authorities (CAs)](#change-1-consolidate-trusted-certificate-authorities-cas)
+      - [Change 2: Certificate Standards - Different Subject\_DN attribute - organizationIdentifier](#change-2-certificate-standards---different-subject_dn-attribute---organizationidentifier)
+   - [A2 - DCR request validation](#a2---dcr-request-validation)
+      - [Change 3: Modify Mention Around Sandbox Directory](#change-3-modify-mention-around-sandbox-directory)
+      - [Change 4: DCR - Different Subject\_DN attribute - organizationIdentifier](#change-4-dcr---different-subject_dn-attribute---organizationidentifier)
+      - [Change 5: SSA Signature Validation - Expand](#change-5-ssa-signature-validation---expand)
+   - [A3 - Scope Accreditation](#a3---scope-accreditation)
+      - [Change 6: Consolidate the Role Table Mapping](#change-6-consolidate-the-role-table-mapping)
+   - [B2 - Subject\_DN Validation](#b2---subject_dn-validation)
+   - [C2 - Token Request Assertion Validation](#c2---token-request-assertion-validation)
+      - [Additional Change 1: Explicit Requirement to use JWKS for a specific directory](#additional-change-1-explicit-requirement-to-use-jwks-for-a-specific-directory)
+7. [Conclusion](#conclusion)
+
+
+# Version 
+
+**Draft v.0.2 - Presented on 12/06 at Joint OPF/OPIN Meeting**
+
 # **Disclaimer**
 Before evaluating this document, please take into account the following critical points:
 
@@ -12,7 +37,7 @@ Before evaluating this document, please take into account the following critical
 - It is important to note that the primary objective of this document is to provide an analysis of the security standards changes that might be implemented to establish interoperability. Therefore, it should not be viewed as a comprehensive or exhaustive resource.
 - To maintain simplicity, this document outlines proposed updates to the Open Finance Standards to accommodate Open Insurance Data Receivers. It is anticipated that corresponding amendments will need to be made to the Open Insurance Standards to facilitate interoperability.
 ## **Objective**
-Both the Open Finance and Open Insurance ecosystems are mandated to devise a technical proposal that would facilitate Open Insurance participants' requests for customer data from Open Finance participants, and vice versa. This requirement is delineated in [RESOLUÇÃO CONJUNTA Nº 5, DE 20 DE MAIO DE 2022](https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20Conjunta&numero=5) , published collaboratively by the two ecosystem regulators, SUSEP and Open Finance.
+Both the Open Finance and Open Insurance ecosystems are mandated to devise a technical proposal that would facilitate Open Insurance participants' requests for customer data from Open Finance participants, and vice versa. This requirement is delineated in [RESOLUÇÃO CONJUNTA Nº 5, DE 20 DE MAIO DE 2022](https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20Conjunta&numero=5), published collaboratively by the two ecosystem regulators, SUSEP and Open Finance.
 
 The objective of this paper is to serve as a guiding framework, by proffering a straightforward solution for these ecosystems to achieve interoperability, in alignment with the requirement specified in the aforementioned document:
 > I - Propose and implement technical standards and other operational procedures that ensure the interoperability of the systems constituting Open Finance;
@@ -35,11 +60,17 @@ To acquire a ConsentID for a Data Provider within either ecosystem, a Data Recei
 
 One approach to providing these technical means involves standardizing the entire journey up until Consent Creation, which should be specific to each ecosystem. In technical terms, this can be represented as follows:
 
+![imagem](https://github.com/OpenBanking-Brasil/specs-directory/assets/61887196/d6570e24-7cb4-4768-a1f6-987f360fec96)
+
 This leads to the ultimate problem statement: "Establish a standardized Registration and Token Grant Journey that does not discriminate between participants from either ecosystem."
 
 Considering the above, it is possible to divide the two main blocks of the journey requiring standardization into smaller components executed by each ecosystem's Data Providers, which may differ between Open Finance and Open Insurance:
 
+![image_2](https://github.com/OpenBanking-Brasil/specs-directory/assets/61887196/6f4f26e9-e558-465b-ac62-4b0300a45d9f)
+
 The aim of this paper, then, is to evaluate and standardize each validation defined in the above diagram in a way that enables Data Providers (OPs) to authenticate Data Receivers (RPs), irrespective of their originating ecosystem.
+
+
 # **Standardization Proposal** 
 Each validation block outlined in the diagram at the conclusion of the Problem Statement will be analyzed in terms of the divergence between the Open Finance and Open Insurance documentation. A proposal will then be put forward on how this validation can be standardized to realize the desired ecosystem interoperability.
 ## **A1/B1/C1 - mTLS Certificates to be Trusted**
@@ -77,7 +108,7 @@ and
 
 <https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/82051199/EN+Open+Finance+Brasil+Financial-grade+API+Dynamic+Client+Registration+1.0+Implementers+Draft+3#9.2.-Open-Finance-Brasil-SSA-Key-Store-and-Issuer-Details> 
 
-Claim 7.1.14 defines:
+Claim 7.1.2 defines:
 
 - shall validate that the request contains software\_statement JWT signed using the PS256 algorithim issued by the Open Finance Brasil directory of participants;
 
@@ -93,18 +124,17 @@ The [Authorisation Server Requirements](https://openfinancebrasil.atlassian.net/
 The aforementioned clause necessitates an update to the specifications to incorporate a mapping between roles and scopes for the SSA, originating from both the Open Finance (OPF) and Open Insurance (OPIN) Directories.
 
 This is delineated in the 'software\_statement\_roles' claim in the SSA, which follows the subsequent format:
-
-`  `"software\_statement\_roles": [
-
-`    `{
-
-`      `"role": "",
-
-`      `"authorisation\_domain": "",
-
-`      `"status": "Active"
-
-`    `} ]
+```
+{
+  "software_statement_roles": [
+    {
+      "role": "",
+      "authorisation_domain": "",
+      "status": "Active"
+    }
+  ]
+}
+```
 
 **Solution:** The table featured in section 7.2 should be updated to include an additional column titled "Authorisation Domain". This modification would enable the mapping of each ecosystem's Regulatory Role to the scopes that should be assigned based on each individual ecosystem.
 
