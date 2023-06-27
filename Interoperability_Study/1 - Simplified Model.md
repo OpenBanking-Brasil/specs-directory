@@ -38,7 +38,7 @@ This study is the first one out of three:
 # **Disclaimer**
 Before evaluating this document, please take into account the following critical points:
 
-- This document is intended to function as a point of reference for evaluating a simple strategy to facilitate interoperability between the Open Payments Framework (OPF) and Open Insurance Network (OPIN). It should not be interpreted as constituting the final recommendation from Raidiam.
+- This document is intended to function as a point of reference for evaluating a simple strategy to facilitate interoperability between the Open Finance Brazil (OPF) and Open Insurance Brazil (OPIN). It should not be interpreted as constituting the final recommendation from Raidiam.
 - Raidiam continues to advocate that the path towards achieving interoperability for both ecosystems should incorporate all the insights gathered since the inception in 2021. As such, this step presents a valuable opportunity to implement FAPI 2.0 and OIDC Federation, enhancing standardization and security measures. Moreover, it enables a more comprehensive level of interoperability, extending beyond just OPF - OPIN.
 - It is important to note that the primary objective of this document is to provide an analysis of the security standards changes that might be implemented to establish interoperability. Therefore, it should not be viewed as a comprehensive or exhaustive resource.
 - To maintain simplicity, this document outlines proposed updates to the Open Finance Standards to accommodate Open Insurance Data Receivers. It is anticipated that corresponding amendments will need to be made to the Open Insurance Standards to facilitate interoperability.
