@@ -1,0 +1,22 @@
+{
+    "jwks":{
+       "keys":[
+          {
+             "kty":"RSA",
+             "n":"rbWcSsX9BoV0SlipiDOQwat6fKzUXIT8o4yQ7f888sVWFfsPaOAih5o3LnOHIg8VvP4jqJug-nYAR5COsHIGg2IngCvx78VhUAsABSo5EcpewT2mEgaIbB_kEk8xsTrNcVrNhs30fDL765Y5ZtS4u3Rb8mBzgbk7_Naii_-2BPvTJzSmVsqPmvcrr7C94Io4wttCM3aepX43nlBlJux7pLqtS5r56lqyV8u_63rcogOVzL-8wQWFo3vgkPoU59Dn19DZpwH-7vTZ4SxeSV8UgQqBg4AOhuHPaFtICFFfc3H98yqOMfOzffkrGsZgkBTvrkVGv7kIz9EzHF_EZvKgMw",
+             "e":"AQAB",
+             "kid":"e3e17dcfa71ce60081cf9af83e61aa1f0da58253ff67c12869483ea33949475f"
+          }
+       ]
+    },
+    "metadata":{
+       "federation_entity":{
+          "federation_list_endpoint":"https://federation.directory.openbankingbrasil.org.br/list",
+          "federation_fetch_endpoint":"https://federation.directory.openbankingbrasil.org.br/fetch"
+       }
+    },
+    "iss":"https://federation.directory.openbankingbrasil.org.br",
+    "sub":"https://federation.directory.openbankingbrasil.org.br",
+    "exp":1723328376,
+    "iat":1691705976
+ }

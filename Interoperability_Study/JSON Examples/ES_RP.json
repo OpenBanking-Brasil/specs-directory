@@ -1,0 +1,68 @@
+{
+   "jwks": {
+     "keys": [
+       {
+         "kty": "RSA",
+         "n": "z8kO0V3SWg2f2SfZdPurOsRlu46dhZhZuNCr_Mt4WlqjIZMFgMKo2rbEL_iyFGBz-iiKJ0HtJ6a_dVdMHM1FBUaeTItZIBm9m2ZUPszzsoQ7x4HP_mk9AP99_zpjVloreYb6yuiozSiW0Vr1UgMEO9Q2EhgplZy4teGI4oh1QU5fTGc8Hq4dM5jpD8Dch3xh-3P7lPiBUk02WD4-txzAtBKGfNlKun6M-r0KbfxsTREdmoEg_vyF0XhV09q7l1SOEhnUozIMMrK38qG1IiYGfoDkuzX1sWmhp_515AnM1kN8TGWWFpK0J1GRXzYQuK-shb5cHca0cIbYNXwU4kbGhw",
+         "e": "AQAB",
+         "kid": "8bcc2641947b1bd4dcb129d41a255815a59886b15b5107a21c16a723cd9e9639"
+       }
+     ]
+   },
+   "authority_hints": [
+     "https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002"
+   ],
+   "metadata": {
+     "openid_relying_party": {
+       "redirect_uris": [
+         "https://nuapp.nubank.com.br/open-banking/authorized",
+         "https://nuapp.nubank.com.br/bdc/brooklyn-bridge/expr/open-banking-dc-authorized"
+       ],
+       "token_endpoint_auth_method": "private_key_jwt",
+       "grant_types": [
+         "authorization_code",
+         "client_credentials"
+       ],
+       "response_types": [
+         "code id_token"
+       ],
+       "client_name": "Nubank",
+       "client_uri": "https://nubank.com.br",
+       "logo_uri": "https://nuapp.nubank.com.br/open-banking/logo.svg",
+       "scope": "openid accounts credit-card-accounts consents customers invoice-financings financings loans unarranged-accounts-overdraft resources credit-fixed-incomes exchanges payments",
+       "contacts": [
+         "contact.one@raidiam.com",
+         "contact.two@raidiam.com"
+       ],
+       "tos_uri": "https://exampleuri.com",
+       "policy_uri": "https://exampleuri.com",
+       "jwks_uri": "https://keystore.directory.openbankingbrasil.org.br/926e3037-a685-553c-afa3-f7cb46ff8084/9d299b83-175e-4c1e-93da-85aed64b32fd/application.jwks",
+       "software_id": "9d299b83-175e-4c1e-93da-85aed64b32fd",
+       "software_version": "1.00",
+       "claims": [
+         "cpf",
+         "cnpj",
+         "sub"
+       ],
+       "post_logout_redirect_uris": [
+         "https://exampleuri.com"
+       ],
+       "sector_identifier_uri": "https://keystore.directory.openbankingbrasil.org.br/926e3037-a685-553c-afa3-f7cb46ff8084/9d299b83-175e-4c1e-93da-85aed64b32fd/redirect_uris.json",
+       "software_api_webhook_uris": [
+         "https://exampleuri.com"
+       ],
+       "software_on_behalf_of_org": "Example Inc.",
+       "software_client_description": "Example description about what this software has as a purpose",
+       "software_client_id": "https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002/openid_relying_party/9d299b83-175e-4c1e-93da-85aed64b32fd",
+       "org_id": "926e3037-a685-553c-afa3-f7cb46ff8084",
+       "client_registration_types": [
+         "automatic"
+       ]
+     }
+   },
+   "trust_anchor_id": "https://federation.directory.openbankingbrasil.org.br",
+   "iss": "https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002",
+   "sub": "https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002/openid_relying_party/9d299b83-175e-4c1e-93da-85aed64b32fd",
+   "exp": 1723328376,
+   "iat": 1691705976
+ }

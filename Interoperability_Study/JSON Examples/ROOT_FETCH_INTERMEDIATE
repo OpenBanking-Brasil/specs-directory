@@ -1,0 +1,18 @@
+
+{
+    "iss": "https://federation.directory.openbankingbrasil.org.br",
+    "sub": "https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002",
+    "exp": 1723328376,
+    "iat": 1691705976,
+  "jwks": {
+    "keys": [
+        {
+            "kty":"RSA",
+            "use":"sig",
+            "n":"0t-TDOj5japF93pOGj-mNOo3tbD29Wq6UGdbbt5aPdEixhKKhY3hYc9dt6nDO6kiGzgxCpu6wSOBKQjCfiaI2Zt_BQyjGHvpPCNBs1Vg87OhlVjadifhJAibWFQYtBnavRJLKzERw135gckVYI1bDqCKt-D_l5ukKBLNdw443hejML11ijwX5IM3bFT1By5kgYxbq-iMAx7yoyahdNPlL0g087zNULRC0ENg_xh1ZpNpdxgkzoYNkpRlrwyA_Igc_xWSaX_zplOd-GiDBE_gu03msmpcuSk3efmL3WHEnUN-mKzR-V6t_L2cbCc5tCoH2Hh9jxB6DNUjw2a_gVFzOw",
+            "e":"AQAB",
+            "kid":"4d918f4529378c8dfba0c6f5547bcf32473bbbe4728b0378251aac8e57338964"
+         }
+    ]
+  }
+}

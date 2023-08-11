@@ -1,0 +1,27 @@
+{
+    "jwks":{
+       "keys":[
+          {
+             "kty":"RSA",
+             "n":"z8kO0V3SWg2f2SfZdPurOsRlu46dhZhZuNCr_Mt4WlqjIZMFgMKo2rbEL_iyFGBz-iiKJ0HtJ6a_dVdMHM1FBUaeTItZIBm9m2ZUPszzsoQ7x4HP_mk9AP99_zpjVloreYb6yuiozSiW0Vr1UgMEO9Q2EhgplZy4teGI4oh1QU5fTGc8Hq4dM5jpD8Dch3xh-3P7lPiBUk02WD4-txzAtBKGfNlKun6M-r0KbfxsTREdmoEg_vyF0XhV09q7l1SOEhnUozIMMrK38qG1IiYGfoDkuzX1sWmhp_515AnM1kN8TGWWFpK0J1GRXzYQuK-shb5cHca0cIbYNXwU4kbGhw",
+             "e":"AQAB",
+             "kid":"8bcc2641947b1bd4dcb129d41a255815a59886b15b5107a21c16a723cd9e9639"
+          }
+       ]
+    },
+    "authority_hints":["https://federation.opendatabrasil.org.br","https://federation.openbankingbrasil.org.br"],
+    "metadata":{
+       "federation_entity":{
+          "federation_list_endpoint":"https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002/list",
+          "federation_fetch_endpoint":"https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002/fetch",
+          "logo_uri":"https://openfinancebrasil.org.br/wp-content/themes/openbank/assets/img/logo.png",
+          "contacts":"ralph.bragg@raidiam.com",
+          "homepage_uri":"https://web.directory.openbankingbrasil.org.br",
+          "organization_name":"Open Finance Brasil"
+       }
+    },
+    "iss":"https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002",
+    "sub":"https://federation.directory.openbankingbrasil.org.br/6c4301b0-37f4-11ee-be56-0242ac120002",
+    "exp":1723328376,
+    "iat":1691705976
+ }
