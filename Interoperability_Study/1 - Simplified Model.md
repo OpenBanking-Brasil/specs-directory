@@ -89,7 +89,7 @@ Both ecosystems support the same ICP-Brasil, however, they each have distinct on
 ### **Change 2: Certificate Standards - Different Subject\_DN attribute - *organizationIdentifier***
 The sole difference between Open Finance (OPF) and Open Insurance (OPIN) issued certificates as defined on the [Brazil Certificate Standards](https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/82084176/EN+Padr+o+de+Certificados+Open+Finance+Brasil+2.0) is the attribute organizationIdentifier. This attribute is structured beginning with OFBBR- for certificates issued for OPF, and OPIBR- for certificates issued for Open Insurance.
 
-**Solution**: Explicitly document this distinction in the certificate standards documentation and enforce the requirement that certificates issued by accredited CAs must be accepted, irrespective of the attribute organizationIdentifier.
+**Solution**: Explicitly document this distinction in the certificate standards documentation to ensure visibility to the Ecosystem. **This change is optional as there's no expectation around validating the subject_dn when executing mTLS**
 ## **A2 - DCR request validation**
 ### **Change 3: Modify Mention Around Sandbox Directory**
 Referenced on: <https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/82051199/EN+Open+Finance+Brasil+Financial-grade+API+Dynamic+Client+Registration+1.0+Implementers+Draft+3#7.1.-Authorization-server> 
@@ -106,7 +106,7 @@ Claim 7.1.14 defines:
 
 - The *organizationIdentifier* field will be found in the subject\_DN in ASN.1 format and must be decoded respecting the corresponding encoding string. The value of the *organizationIdentifier* field of the certificate which must contain the prefix corresponding to the Registration Reference *OFBBR-* followed by the value of the *org\_id* field of the SSA. You must convert the values ​​of the OID 2.5.4.97 field from ASN.1 format to human-readable text. For certificates issued before August 31, 2022: The value of the *OR* field of the certificate must contain the value of the *org\_id* field of the SSA.
 
-**Solution:** Revise the above claim to specify that both OPFBR- and OPIBR- prefixes can be accepted in the subject\_dn.
+**Solution:** Revise the above claim to specify that both OPFBR- and OPIBR- prefixes can be accepted in the subject\_dn. **This change is only required if the token authentication method is set to be tls_client_auth, a configuration that is expected to be deprecated on Open Finance and Open Insurance Brazil, which expects to support only private_key_jwt**
 ### **Change 5: SSA Signature Validation - Expand**
 Referenced on: <https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/82051199/EN+Open+Finance+Brasil+Financial-grade+API+Dynamic+Client+Registration+1.0+Implementers+Draft+3#7.1.-Authorization-server> 
 
