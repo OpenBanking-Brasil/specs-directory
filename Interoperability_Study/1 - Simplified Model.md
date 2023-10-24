@@ -31,9 +31,12 @@ This study is the first one out of three:
 7. [Conclusion](#conclusion)
 
 
-# Version 
+# Version History
 
-**Draft v.0.3 - Presented on 12/06 at Joint OPF/OPIN Meeting**
+Current Version: Draft v.0.3
+
+**Draft v.0.3 - Presented on 12/06 at Joint OPF/OPIN Meeting** 
+**Draft v.0.4 - Minor Guidance around subject_dn validation mentioned on issues [#27](https://github.com/OpenBanking-Brasil/specs-directory/issues/27) and [#28](https://github.com/OpenBanking-Brasil/specs-directory/issues/28)** 
 
 # **Disclaimer**
 Before evaluating this document, please take into account the following critical points:
